@@ -9,6 +9,8 @@ import AcService from './pages/services/AcService';
 import WashingMachineService from './pages/services/WashingMachineService';
 import RefrigeratorService from './pages/services/RefrigeratorService';
 import MicrowaveService from './pages/services/MicrowaveService';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 import FloatingButtons from './components/FloatingButtons';
 import './index.css';
 
@@ -24,6 +26,8 @@ function App() {
         <Route path="/services/washing-machine" element={<WashingMachineService />} />
         <Route path="/services/refrigerator" element={<RefrigeratorService />} />
         <Route path="/services/microwave" element={<MicrowaveService />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
       </Routes>
       <FloatingButtons />
       <Footer />

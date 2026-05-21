@@ -13,11 +13,11 @@ const CONTACTS = [
   },
   {
     title: "Email Address",
-    value: "vellorerepair@gmail.com",
+    value: "velloresmartservice@gmail.com",
     sub: "For bookings & inquiries",
     icon: Mail,
     color: "#00f2fe",
-    href: "mailto:vellorerepair@gmail.com"
+    href: "mailto:velloresmartservice@gmail.com"
   },
   {
     title: "Service Location",
@@ -25,7 +25,7 @@ const CONTACTS = [
     sub: "Doorstep repairs across all Vellore areas",
     icon: MapPin,
     color: "#ff4500",
-    href: "https://maps.google.com"
+    href: "https://www.google.com/maps/search/?api=1&query=12.908242741662969,79.13668999453267"
   },
   {
     title: "Working Availability",
@@ -77,9 +77,9 @@ const ContactInfo = () => {
         position: 'relative',
         zIndex: 10
       }}>
-        
+
         {/* Left Side: Contact Cards */}
-        <motion.div 
+        <motion.div
           variants={containerVars}
           initial="hidden"
           whileInView="show"
@@ -105,7 +105,7 @@ const ContactInfo = () => {
                   whileHover={{ scale: 1.02 }}
                   style={{ textDecoration: 'none', display: 'block' }}
                 >
-                  <Tag 
+                  <Tag
                     href={item.href}
                     target={item.href ? "_blank" : undefined}
                     rel="noopener noreferrer"
@@ -132,9 +132,9 @@ const ContactInfo = () => {
                       backgroundColor: item.color
                     }} />
 
-                    <motion.div 
+                    <motion.div
                       whileHover={{ rotate: 15 }}
-                      style={{ 
+                      style={{
                         color: item.color, background: 'rgba(255,255,255,0.03)',
                         width: '55px', height: '55px', borderRadius: '14px',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -163,7 +163,7 @@ const ContactInfo = () => {
         </motion.div>
 
         {/* Right Side: 3D map visualization placeholder */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, type: 'spring' }}
@@ -193,7 +193,7 @@ const ContactInfo = () => {
             }} />
 
             {/* Glowing Map scan sweep */}
-            <motion.div 
+            <motion.div
               animate={{ transform: ['translateY(-100%)', 'translateY(100%)'] }}
               transition={{ duration: 7, repeat: Infinity, ease: 'linear' }}
               style={{
@@ -207,7 +207,7 @@ const ContactInfo = () => {
             {/* Main Location Core (Vellore Center) */}
             <div style={{ position: 'relative', zIndex: 10 }}>
               {/* Outer pulsing ring 1 */}
-              <motion.div 
+              <motion.div
                 animate={{ scale: [1, 2.5], opacity: [0.6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeOut' }}
                 style={{
@@ -217,7 +217,7 @@ const ContactInfo = () => {
                 }}
               />
               {/* Outer pulsing ring 2 */}
-              <motion.div 
+              <motion.div
                 animate={{ scale: [1, 3.5], opacity: [0.4, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: 'easeOut', delay: 0.8 }}
                 style={{
@@ -250,27 +250,27 @@ const ContactInfo = () => {
               <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#25D366', boxShadow: '0 0 10px #25D366' }}></span>
               ACTIVE SERVICE COVERAGE: VELLORE DISTRICT
             </div>
-            
+
             {/* Holographic Routes decoration */}
             <svg style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, zIndex: 2, pointerEvents: 'none' }}>
-              <motion.path 
+              <motion.path
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
                 d="M 50 150 Q 200 80 250 200 T 450 350"
-                fill="none" 
-                stroke="rgba(0,122,255,0.15)" 
-                strokeWidth="2" 
+                fill="none"
+                stroke="rgba(0,122,255,0.15)"
+                strokeWidth="2"
                 strokeDasharray="4"
               />
-              <motion.path 
+              <motion.path
                 initial={{ pathLength: 0 }}
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut', delay: 1 }}
                 d="M 400 100 Q 250 300 200 450"
-                fill="none" 
-                stroke="rgba(0,242,254,0.15)" 
-                strokeWidth="2" 
+                fill="none"
+                stroke="rgba(0,242,254,0.15)"
+                strokeWidth="2"
                 strokeDasharray="4"
               />
             </svg>

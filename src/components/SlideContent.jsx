@@ -1,8 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Wrench } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const SlideContent = ({ slide }) => {
+  // Map slide ID to its corresponding service page route
+  const getDetailsPath = (id) => {
+    switch (id) {
+      case 1:
+        return '/services/ac';
+      case 2:
+        return '/services/washing-machine';
+      case 3:
+        return '/services/microwave';
+      case 4:
+        return '/services/refrigerator';
+      default:
+        return '/';
+    }
+  };
+
   // Animation variants for smooth Apple/Tesla cinematic reveals
   const containerVars = {
     hidden: { opacity: 0 },
@@ -111,13 +128,17 @@ const SlideContent = ({ slide }) => {
       </motion.p>
       
       <motion.div variants={ctaVars} className="flex-col-mobile" style={{ display: 'flex', gap: '1.5rem' }}>
-        <button className="btn-primary">
-          <Wrench size={20} />
-          Book Service
-        </button>
-        <button className="btn-glass">
-          View Details
-        </button>
+        <Link to="/contact" style={{ textDecoration: 'none' }}>
+          <button className="btn-primary">
+            <Wrench size={20} />
+            Book Service
+          </button>
+        </Link>
+        <Link to={getDetailsPath(slide.id)} style={{ textDecoration: 'none' }}>
+          <button className="btn-glass">
+            View Details
+          </button>
+        </Link>
       </motion.div>
     </motion.div>
   );
