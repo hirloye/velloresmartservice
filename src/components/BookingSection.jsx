@@ -32,7 +32,7 @@ const BookingSection = () => {
     setStatus({ type: '', message: '' });
 
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('/send-email.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

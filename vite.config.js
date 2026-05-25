@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
         configureServer(server) {
           server.middlewares.use(async (req, res, next) => {
             // Check if the requested route is the email API
-            if (req.url === '/api/send-email' && req.method === 'POST') {
+            if ((req.url === '/api/send-email' || req.url === '/send-email.php') && req.method === 'POST') {
               let body = '';
               req.on('data', chunk => {
                 body += chunk.toString();
