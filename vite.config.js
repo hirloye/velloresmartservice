@@ -40,7 +40,7 @@ export default defineConfig(({ mode }) => {
                       'Authorization': `Bearer ${apiKey}`
                     },
                     body: JSON.stringify({
-                      from: 'Vellore Smart Service <onboarding@resend.dev>',
+                      from: 'onboarding@resend.dev',
                       to: emailTo,
                       subject: `New Repair Appointment: ${appliance.toUpperCase()} - ${brand || 'Unknown Brand'}`,
                       html: `
