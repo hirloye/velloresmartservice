@@ -41,7 +41,14 @@ const BookingSection = () => {
       });
 
 
-      const result = await response.json();
+      let result = {};
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        const text = await response.text();
+        result = { error: text || `Server error: ${response.status}` };
+      }
 
       if (response.ok) {
         setStatus({ type: 'success', message: 'Appointment booked successfully! We will contact you shortly.' });
