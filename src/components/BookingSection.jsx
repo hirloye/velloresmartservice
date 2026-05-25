@@ -10,7 +10,62 @@ const BookingSection = () => {
     "Expert Support"
   ];
 
+  const [formData, setFormData] = React.useState({
+    appliance: '',
+    brand: '',
+    problem: '',
+    address: '',
+    phone: '',
+    date: ''
+  });
+  const [status, setStatus] = React.useState({ type: '', message: '' });
+  const [loading, setLoading] = React.useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.appliance || !formData.address || !formData.phone || !formData.date) {
+      setStatus({ type: 'error', message: 'Please fill in all required fields.' });
+      return;
+    }
+
+    setLoading(true);
+    setStatus({ type: '', message: '' });
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: 'success', message: 'Appointment booked successfully! We will contact you shortly.' });
+        setFormData({
+          appliance: '',
+          brand: '',
+          problem: '',
+          address: '',
+          phone: '',
+          date: ''
+        });
+      } else {
+        setStatus({ type: 'error', message: result.error || 'Failed to submit appointment. Please try again.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus({ type: 'error', message: 'An unexpected error occurred. Please try again or call us directly.' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
+
     <section className="mobile-padding" style={{
       position: 'relative',
       width: '100vw',
@@ -119,36 +174,101 @@ const BookingSection = () => {
             </div>
           </div>
 
-          <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {status.message && (
+            <div style={{
+              padding: '1rem',
+              borderRadius: '12px',
+              marginBottom: '1.5rem',
+              backgroundColor: status.type === 'success' ? 'rgba(37, 211, 102, 0.1)' : 'rgba(255, 69, 0, 0.1)',
+              border: `1px solid ${status.type === 'success' ? 'rgba(37, 211, 102, 0.3)' : 'rgba(255, 69, 0, 0.3)'}`,
+              color: status.type === 'success' ? '#25D366' : '#ff4500',
+              fontSize: '0.95rem',
+              textAlign: 'center'
+            }}>
+              {status.message}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div className="grid-form-row">
-              <select className="form-input">
+              <select 
+                className="form-input"
+                value={formData.appliance}
+                onChange={(e) => setFormData({ ...formData, appliance: e.target.value })}
+                required
+              >
                 <option value="">Appliance Type</option>
                 <option value="ac">AC</option>
                 <option value="washing_machine">Washing Machine</option>
                 <option value="microwave">Microwave Oven</option>
                 <option value="refrigerator">Refrigerator</option>
               </select>
-              <input type="text" placeholder="Brand (e.g. LG, Samsung)" className="form-input" />
+              <input 
+                type="text" 
+                placeholder="Brand (e.g. LG, Samsung)" 
+                className="form-input" 
+                value={formData.brand}
+                onChange={(e) => setFormData({ ...formData, brand: e.target.value })}
+              />
             </div>
 
-            <textarea placeholder="Problem Description" rows={3} className="form-input" style={{ resize: 'none' }}></textarea>
+            <textarea 
+              placeholder="Problem Description" 
+              rows={3} 
+              className="form-input" 
+              style={{ resize: 'none' }}
+              value={formData.problem}
+              onChange={(e) => setFormData({ ...formData, problem: e.target.value })}
+            ></textarea>
             
-            <input type="text" placeholder="Your Address / Location" className="form-input" />
+            <input 
+              type="text" 
+              placeholder="Your Address / Location" 
+              className="form-input" 
+              value={formData.address}
+              onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+              required
+            />
             
             <div className="grid-form-row">
-              <input type="tel" placeholder="Phone Number" className="form-input" />
-              <input type="date" className="form-input" style={{ colorScheme: 'dark' }} />
+              <input 
+                type="tel" 
+                placeholder="Phone Number" 
+                className="form-input" 
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                required
+              />
+              <input 
+                type="date" 
+                className="form-input" 
+                style={{ colorScheme: 'dark' }} 
+                value={formData.date}
+                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                required
+              />
             </div>
 
             <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={loading ? {} : { scale: 1.02 }}
+              whileTap={loading ? {} : { scale: 0.98 }}
               className="btn-primary" 
-              style={{ width: '100%', justifyContent: 'center', padding: '1.2rem', marginTop: '1rem', fontSize: '1.2rem' }}
+              type="submit"
+              disabled={loading}
+              style={{ 
+                width: '100%', 
+                justifyContent: 'center', 
+                padding: '1.2rem', 
+                marginTop: '1rem', 
+                fontSize: '1.2rem',
+                opacity: loading ? 0.7 : 1,
+                cursor: loading ? 'not-allowed' : 'pointer'
+              }}
             >
-              Schedule Appointment
+              {loading ? 'Scheduling...' : 'Schedule Appointment'}
             </motion.button>
           </form>
+
 
         </motion.div>
       </div>

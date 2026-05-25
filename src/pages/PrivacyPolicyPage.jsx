@@ -221,7 +221,7 @@ const PrivacyPolicyPage = () => {
               flexDirection: 'column',
               gap: '0.5rem'
             }}>
-              <p style={{ margin: 0, fontSize: '1rem' }}><strong>Email:</strong> velloresmartservice@gmail.com</p>
+              <p style={{ margin: 0, fontSize: '1rem' }}><strong>Email:</strong> velloreservice23@gmail.com</p>
               <p style={{ margin: 0, fontSize: '1rem' }}><strong>Phone:</strong> +91 73059 54417</p>
               <p style={{ margin: 0, fontSize: '1rem' }}><strong>Address:</strong> Lakshmi Perumal Theru, Kosepattai, Vellore</p>
             </div>

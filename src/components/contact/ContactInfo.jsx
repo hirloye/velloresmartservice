@@ -13,11 +13,11 @@ const CONTACTS = [
   },
   {
     title: "Email Address",
-    value: "velloresmartservice@gmail.com",
+    value: "velloreservice23@gmail.com",
     sub: "For bookings & inquiries",
     icon: Mail,
     color: "#00f2fe",
-    href: "mailto:velloresmartservice@gmail.com"
+    href: "mailto:velloreservice23@gmail.com"
   },
   {
     title: "Service Location",

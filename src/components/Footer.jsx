@@ -105,12 +105,12 @@ const Footer = () => {
             <span>+91 73059 54417</span>
           </a>
 
-          <a href="mailto:velloresmartservice@gmail.com" style={{ display: 'flex', gap: '1rem', alignItems: 'center', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.3s' }}
+          <a href="mailto:velloreservice23@gmail.com" style={{ display: 'flex', gap: '1rem', alignItems: 'center', color: 'rgba(255,255,255,0.5)', textDecoration: 'none', transition: 'color 0.3s' }}
             onMouseOver={e => e.currentTarget.style.color = '#007aff'}
             onMouseOut={e => e.currentTarget.style.color = 'rgba(255,255,255,0.5)'}
           >
             <Mail size={20} color="#007aff" style={{ flexShrink: 0 }} />
-            <span>velloresmartservice@gmail.com</span>
+            <span>velloreservice23@gmail.com</span>
           </a>
         </div>
 
