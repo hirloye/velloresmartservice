@@ -52,6 +52,17 @@ const BookingSection = () => {
 
       if (response.ok) {
         setStatus({ type: 'success', message: 'Appointment booked successfully! We will contact you shortly.' });
+        
+        // Google Ads Conversion Tracking
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'conversion', {
+            'send_to': 'AW-18188191056/MFbVCIbylLQcENCK5-BD',
+            'value': 1.0,
+            'currency': 'INR',
+            'transaction_id': ''
+          });
+        }
+
         setFormData({
           appliance: '',
           brand: '',
