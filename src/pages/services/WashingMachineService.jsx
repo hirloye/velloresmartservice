@@ -4,10 +4,10 @@ import { Waves, Shield, CheckCircle, Clock, RotateCcw, Star } from 'lucide-react
 
 const WashingMachineService = () => {
   const IMAGES = [
-    '/washing machine/w1.webp',
-    '/washing machine/w2.webp',
-    '/washing machine/w3.webp',
-    '/washing machine/w4.webp'
+    { src: '/washing machine/w1.webp', alt: 'Washing Machine Repair' },
+    { src: '/washing machine/w2.webp', alt: 'Washing Machine Motor Repair' },
+    { src: '/washing machine/w3.webp', alt: 'Washing machine inlet and drain valve service Vellore' },
+    { src: '/washing machine/w4.webp', alt: 'Washing Machine PCB Repair' }
   ];
 
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -33,10 +33,10 @@ const WashingMachineService = () => {
   });
 
   const SERVICES_LIST = [
-    { title: "Drum & Tub Clean", desc: "Chemical descaling and sanitation of the inner drum and outer tub to remove mold and smells.", image: "/washing machine/w1.webp" },
-    { title: "Motor & Belt Replacement", desc: "Resolving drum spinning issues by replacing worn belts, pulleys, or capacitor/direct drive motors.", image: "/washing machine/w2.webp" },
-    { title: "Inlet & Drain Valve Service", desc: "Unclogging and replacing solenoid water inlet valves and drain pumps to fix flow issues.", image: "/washing machine/w3.webp" },
-    { title: "PCB Motherboard Repair", desc: "Precision micro-soldering and troubleshooting of faulty display control boards.", image: "/washing machine/w4.webp" }
+    { title: "Drum & Tub Clean", desc: "Chemical descaling and sanitation of the inner drum and outer tub to remove mold and smells.", image: "/washing machine/w1.webp", alt: "Drum and Tub Clean" },
+    { title: "Motor & Belt Replacement", desc: "Resolving drum spinning issues by replacing worn belts, pulleys, or capacitor/direct drive motors.", image: "/washing machine/w2.webp", alt: "Motor and Belt Replacement" },
+    { title: "Inlet & Drain Valve Service", desc: "Unclogging and replacing solenoid water inlet valves and drain pumps to fix flow issues.", image: "/washing machine/w3.webp", alt: "Washing machine inlet and drain valve service Vellore" },
+    { title: "PCB Motherboard Repair", desc: "Precision micro-soldering and troubleshooting of faulty display control boards.", image: "/washing machine/w4.webp", alt: "PCB Motherboard Repair" }
   ];
 
   const COMMON_ISSUES = [
@@ -67,7 +67,8 @@ const WashingMachineService = () => {
           <AnimatePresence initial={false}>
             <motion.img
               key={currentImgIndex}
-              src={IMAGES[currentImgIndex]}
+              src={IMAGES[currentImgIndex].src}
+              alt={IMAGES[currentImgIndex].alt}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 0.8, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -166,7 +167,7 @@ const WashingMachineService = () => {
             >
               <img 
                 src={service.image} 
-                alt={service.title} 
+                alt={service.alt || service.title} 
                 style={{ 
                   width: '120px', 
                   height: '120px', 

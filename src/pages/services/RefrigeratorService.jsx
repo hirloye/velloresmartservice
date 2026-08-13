@@ -4,11 +4,11 @@ import { Snowflake, Shield, CheckCircle, Clock, Star } from 'lucide-react';
 
 const RefrigeratorService = () => {
   const IMAGES = [
-    '/fridge/f1.webp',
-    '/fridge/f2.webp',
-    '/fridge/f3.webp',
-    '/fridge/f4.webp',
-    '/fridge/f5.webp'
+    { src: '/fridge/f1.webp', alt: 'Refrigerator Gas Recharge Service' },
+    { src: '/fridge/f2.webp', alt: 'Refrigerator Compressor Repair' },
+    { src: '/fridge/f3.webp', alt: 'Refrigerator Defrost System Repair' },
+    { src: '/fridge/f4.webp', alt: 'Refrigerator Thermostat Repair' },
+    { src: '/fridge/f5.webp', alt: 'Refrigerator Repair Vellore' }
   ];
 
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -34,10 +34,10 @@ const RefrigeratorService = () => {
   });
 
   const SERVICES_LIST = [
-    { title: "Cooling Gas Recharge", desc: "Checking for refrigerant leakages, welding pipes, and recharging gas (R134a/R600a).", image: "/fridge/f1.webp" },
-    { title: "Compressor & Relay Repairs", desc: "Replacing faulty startup relays, capacitors, or installing energy-efficient compressors.", image: "/fridge/f2.webp" },
-    { title: "Defrost System Repair", desc: "Fixing frost buildup in double-door refrigerators by replacing timers, heaters, or sensors.", image: "/fridge/f3.webp" },
-    { title: "Thermostat & Fan Services", desc: "Replacing temperature sensors, fan motors, and door gaskets to maintain insulation.", image: "/fridge/f4.webp" }
+    { title: "Cooling Gas Recharge", desc: "Checking for refrigerant leakages, welding pipes, and recharging gas (R134a/R600a).", image: "/fridge/f1.webp", alt: "Cooling Gas Recharge" },
+    { title: "Compressor & Relay Repairs", desc: "Replacing faulty startup relays, capacitors, or installing energy-efficient compressors.", image: "/fridge/f2.webp", alt: "Compressor and Relay Repairs" },
+    { title: "Defrost System Repair", desc: "Fixing frost buildup in double-door refrigerators by replacing timers, heaters, or sensors.", image: "/fridge/f3.webp", alt: "Defrost System Repair" },
+    { title: "Thermostat & Fan Services", desc: "Replacing temperature sensors, fan motors, and door gaskets to maintain insulation.", image: "/fridge/f4.webp", alt: "Thermostat and Fan Services" }
   ];
 
   const COMMON_ISSUES = [
@@ -68,7 +68,8 @@ const RefrigeratorService = () => {
           <AnimatePresence initial={false}>
             <motion.img
               key={currentImgIndex}
-              src={IMAGES[currentImgIndex]}
+              src={IMAGES[currentImgIndex].src}
+              alt={IMAGES[currentImgIndex].alt}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 0.8, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -164,7 +165,7 @@ const RefrigeratorService = () => {
             >
               <img 
                 src={service.image} 
-                alt={service.title} 
+                alt={service.alt || service.title} 
                 style={{ 
                   width: '120px', 
                   height: '120px', 

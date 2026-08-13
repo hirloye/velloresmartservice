@@ -4,11 +4,11 @@ import { Flame, Shield, CheckCircle, Clock, Star, Zap } from 'lucide-react';
 
 const MicrowaveService = () => {
   const IMAGES = [
-    '/microwave/mc1.webp',
-    '/microwave/mc2.webp',
-    '/microwave/mc3.webp',
-    '/microwave/mc4.webp',
-    '/microwave/mc5.webp'
+    { src: '/microwave/mc1.webp', alt: 'Microwave Magnetron Replacement' },
+    { src: '/microwave/mc2.webp', alt: 'Microwave High-Voltage Capacitor Fix' },
+    { src: '/microwave/mc3.webp', alt: 'Microwave Touchpad Service' },
+    { src: '/microwave/mc4.webp', alt: 'Microwave Turntable Repair' },
+    { src: '/microwave/mc5.webp', alt: 'Microwave Repair Vellore' }
   ];
 
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -34,10 +34,10 @@ const MicrowaveService = () => {
   });
 
   const SERVICES_LIST = [
-    { title: "Magnetron Replacement", desc: "Resolving heating failures by installing genuine high-efficiency magnetrons.", image: "/microwave/mc1.webp" },
-    { title: "High-Voltage Capacitor Fix", desc: "Troubleshooting sparking, humming, or blown fuse issues by replacing high-voltage parts safely.", image: "/microwave/mc2.webp" },
-    { title: "Touchpad & Keypad Service", desc: "Fixing unresponsive control panels, buttons, and display screens.", image: "/microwave/mc3.webp" },
-    { title: "Turntable & Motor Repair", desc: "Replacing drive couplers, roller rings, and turntable motors for even heat distribution.", image: "/microwave/mc4.webp" }
+    { title: "Magnetron Replacement", desc: "Resolving heating failures by installing genuine high-efficiency magnetrons.", image: "/microwave/mc1.webp", alt: "Magnetron Replacement" },
+    { title: "High-Voltage Capacitor Fix", desc: "Troubleshooting sparking, humming, or blown fuse issues by replacing high-voltage parts safely.", image: "/microwave/mc2.webp", alt: "High-Voltage Capacitor Fix" },
+    { title: "Touchpad & Keypad Service", desc: "Fixing unresponsive control panels, buttons, and display screens.", image: "/microwave/mc3.webp", alt: "Touchpad and Keypad Service" },
+    { title: "Turntable & Motor Repair", desc: "Replacing drive couplers, roller rings, and turntable motors for even heat distribution.", image: "/microwave/mc4.webp", alt: "Turntable and Motor Repair" }
   ];
 
   const COMMON_ISSUES = [
@@ -68,7 +68,8 @@ const MicrowaveService = () => {
           <AnimatePresence initial={false}>
             <motion.img
               key={currentImgIndex}
-              src={IMAGES[currentImgIndex]}
+              src={IMAGES[currentImgIndex].src}
+              alt={IMAGES[currentImgIndex].alt}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 0.8, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -167,7 +168,7 @@ const MicrowaveService = () => {
             >
               <img 
                 src={service.image} 
-                alt={service.title} 
+                alt={service.alt || service.title} 
                 style={{ 
                   width: '120px', 
                   height: '120px', 

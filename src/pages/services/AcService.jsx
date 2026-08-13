@@ -4,10 +4,10 @@ import { Wind, Shield, CheckCircle, Clock, Snowflake, Star } from 'lucide-react'
 
 const AcService = () => {
   const IMAGES = [
-    '/ac/a1.webp',
-    '/ac/a2.webp',
-    '/ac/a3.webp',
-    '/ac/a4.webp'
+    { src: '/ac/a1.webp', alt: 'AC Deep Cleaning Service' },
+    { src: '/ac/a2.webp', alt: 'AC Gas Top-Up and Leak Fix' },
+    { src: '/ac/a3.webp', alt: 'AC Installation and Setup' },
+    { src: '/ac/a4.webp', alt: 'AC Compressor Repairs' }
   ];
 
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -33,10 +33,10 @@ const AcService = () => {
   });
 
   const SERVICES_LIST = [
-    { title: "AC Deep Cleaning", desc: "High-pressure jet wash for filters, indoor coils, and outdoor condenser unit.", image: "/ac/a1.webp" },
-    { title: "Gas Top-Up / Leak Fix", desc: "Detecting leaks, sealing, and topping up eco-friendly refrigerant gas.", image: "/ac/a2.webp" },
-    { title: "Installation & Setup", desc: "Precision split and window AC installation with pipe routing and testing.", image: "/ac/a3.webp" },
-    { title: "Compressor Repairs", desc: "Expert diagnosing and replacement of faulty compressors and fan motors.", image: "/ac/a4.webp" }
+    { title: "AC Deep Cleaning", desc: "High-pressure jet wash for filters, indoor coils, and outdoor condenser unit.", image: "/ac/a1.webp", alt: "AC Deep Cleaning" },
+    { title: "Gas Top-Up / Leak Fix", desc: "Detecting leaks, sealing, and topping up eco-friendly refrigerant gas.", image: "/ac/a2.webp", alt: "AC Gas Top-Up and Leak Fix" },
+    { title: "Installation & Setup", desc: "Precision split and window AC installation with pipe routing and testing.", image: "/ac/a3.webp", alt: "AC Installation and Setup" },
+    { title: "Compressor Repairs", desc: "Expert diagnosing and replacement of faulty compressors and fan motors.", image: "/ac/a4.webp", alt: "AC Compressor Repairs" }
   ];
 
   const COMMON_ISSUES = [
@@ -67,7 +67,8 @@ const AcService = () => {
           <AnimatePresence initial={false}>
             <motion.img
               key={currentImgIndex}
-              src={IMAGES[currentImgIndex]}
+              src={IMAGES[currentImgIndex].src}
+              alt={IMAGES[currentImgIndex].alt}
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 0.8, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -166,7 +167,7 @@ const AcService = () => {
             >
               <img 
                 src={service.image} 
-                alt={service.title} 
+                alt={service.alt || service.title} 
                 style={{ 
                   width: '120px', 
                   height: '120px', 
